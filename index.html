@@ -40,10 +40,13 @@
             box-shadow: 0 20px 60px rgba(0, 110, 255, 0.12), 0 8px 24px rgba(0, 0, 0, 0.08);
             overflow: hidden;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .content-wrapper {
-            padding: 32px 24px 28px;
+            padding: 32px 24px 24px;
+            flex: 1;
         }
 
         /* Header Section */
@@ -99,7 +102,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
 
         .feature-item {
@@ -137,22 +140,23 @@
         }
 
         /* QR Code Section */
-        .qr-container {
-            position: relative;
-            margin: 0 -24px -28px -24px;
-            padding: 24px 24px 28px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(240, 250, 255, 0.8) 100%);
+        .qr-section {
+            padding: 24px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(240, 250, 255, 0.9) 100%);
             border-radius: 0 0 32px 32px;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
         }
 
         .qr-wrapper {
             position: relative;
             width: 100%;
             aspect-ratio: 1;
-            max-width: 320px;
-            margin: 0 auto;
+            max-width: 300px;
             border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 16px 40px rgba(0, 110, 255, 0.15), 0 8px 16px rgba(0, 0, 0, 0.08);
@@ -167,19 +171,14 @@
             display: block;
         }
 
-        /* Footer */
-        .footer-section {
-            padding: 20px 24px 0;
-            border-top: 2px solid rgba(0, 110, 255, 0.1);
-            text-align: center;
-        }
-
-        .footer-text {
-            font-size: 16px;
-            font-weight: 700;
+        /* Guide Text */
+        .guide-text {
+            font-size: 14px;
+            font-weight: 600;
             color: #0066ff;
-            letter-spacing: 0.5px;
-            line-height: 1.5;
+            text-align: center;
+            line-height: 1.6;
+            letter-spacing: 0.3px;
         }
 
         /* 装饰元素 */
@@ -233,7 +232,7 @@
 
             .features-grid {
                 gap: 8px;
-                margin-bottom: 20px;
+                margin-bottom: 18px;
             }
 
             .feature-item {
@@ -242,18 +241,18 @@
                 border-radius: 16px;
             }
 
-            .qr-container {
-                margin: 0 -18px -20px -18px;
-                padding: 18px 18px 20px;
+            .qr-section {
+                padding: 18px;
+                gap: 14px;
             }
 
             .qr-wrapper {
-                max-width: 280px;
+                max-width: 260px;
                 border-width: 2px;
             }
 
-            .footer-text {
-                font-size: 14px;
+            .guide-text {
+                font-size: 13px;
             }
         }
 
@@ -269,6 +268,14 @@
             .feature-item {
                 font-size: 11px;
                 padding: 7px 10px;
+            }
+
+            .qr-wrapper {
+                max-width: 240px;
+            }
+
+            .guide-text {
+                font-size: 12px;
             }
         }
 
@@ -300,11 +307,11 @@
                 background-clip: text;
             }
 
-            .footer-text {
+            .guide-text {
                 color: #51d4ff;
             }
 
-            .qr-container {
+            .qr-section {
                 background: linear-gradient(180deg, rgba(26, 42, 58, 0.7) 0%, rgba(15, 31, 42, 0.9) 100%);
             }
 
@@ -330,7 +337,7 @@
             animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* 禁用文本选择但允许长按 */
+        /* 允许长按 */
         .qr-wrapper {
             -webkit-user-select: auto;
             user-select: auto;
@@ -382,15 +389,13 @@
         </div>
 
         <!-- QR Code Section -->
-        <div class="qr-container">
+        <div class="qr-section">
             <div class="qr-wrapper">
                 <img src="poster.webp" alt="微信群二维码" class="qr-image">
             </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer-section">
-            <p class="footer-text">长按识别入群！</p>
+            <div class="guide-text">
+                📱 提示保留到微信<br>长按识别入群
+            </div>
         </div>
     </div>
 </body>
