@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名师精品授课视频 - 进群免费领</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(to bottom, #f0f7ff, #c9e4ff);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .poster-container {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E6F3FF 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to bottom, #e5b567, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .tag-pill {
+            background: #000;
+            color: #51f7d5;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .tag-pill svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .qr-section {
+            position: relative;
+            padding: 20px;
+            margin: 20px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,110,255,0.1);
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            color: #4A90E2;
+        }
+
+        /* 模拟原图中的装饰元素 */
+        .circle-bg {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0,110,255,0.1) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="poster-container p-6 md:p-10 flex flex-col items-center text-center">
+        <!-- Header Section -->
+        <div class="w-full flex justify-between items-start mb-4">
+            <h1 class="text-5xl md:text-6xl font-black italic text-gray-900 tracking-tighter">@30G</h1>
+            <div class="bg-[#51f7d5] text-black px-4 py-2 rounded-xl font-bold text-lg leading-tight shadow-sm">
+                名师精品<br>授课视频
+            </div>
+        </div>
+
+        <h2 class="text-5xl md:text-6xl font-black italic gradient-text mb-8 tracking-wide">
+            进群免费领
+        </h2>
+
+        <!-- Tags Grid -->
+        <div class="grid grid-cols-2 gap-3 mb-10 w-full max-w-sm">
+            <div class="tag-pill">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                房屋布局风水
+            </div>
+            <div class="tag-pill">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                公司店铺选址
+            </div>
+            <div class="tag-pill">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                看相识人秘术
+            </div>
+            <div class="tag-pill">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                财运桃花运势
+            </div>
+        </div>
+
+        <!-- QR Code Container -->
+        <div class="relative w-full aspect-square max-w-[340px] mb-8 group">
+            <!-- 模拟海报背景 -->
+            <div class="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                <img src="poster.webp" alt="Poster Background" class="w-full h-full object-cover">
+                <!-- 遮罩层，如果需要直接展示原图中的二维码区域，可以调整样式 -->
+                <!-- 这里为了还原效果，我们直接显示原图，但在上面覆盖一层说明 -->
+            </div>
+            
+            <!-- 箭头装饰 (SVG) -->
+            <div class="absolute -top-12 -right-4 w-20 h-20 animate-bounce">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M80 20C70 40 40 50 30 75" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M20 65L30 75L40 65" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="w-full border-t border-blue-200 pt-6 mt-4">
+            <p class="text-blue-600 font-bold text-lg md:text-xl tracking-wider">
+                截图保留到微信，长按识别入群！
+            </p>
+        </div>
+    </div>
+</body>
+</html>
