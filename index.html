@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>名师精品授课视频 - 进群免费领</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
         
         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             user-select: none;
@@ -17,120 +19,107 @@
         html, body {
             width: 100%;
             height: 100%;
-            margin: 0;
-            padding: 0;
             overflow-x: hidden;
         }
 
         body {
             font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #e8f4ff 0%, #d0e8ff 50%, #c9e4ff 100%);
+            background: linear-gradient(180deg, #f0f7ff 0%, #e0f0ff 50%, #d0e8ff 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 12px;
+            padding: 16px;
         }
 
-        .poster-container {
+        .container {
             width: 100%;
-            max-width: 520px;
-            background: linear-gradient(180deg, #ffffff 0%, #f5fbff 100%);
-            border-radius: 32px;
-            box-shadow: 0 20px 60px rgba(0, 110, 255, 0.12), 0 8px 24px rgba(0, 0, 0, 0.08);
+            max-width: 480px;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 16px 48px rgba(0, 110, 255, 0.12);
             overflow: hidden;
-            position: relative;
             display: flex;
             flex-direction: column;
+            min-height: auto;
         }
 
-        .content-wrapper {
-            padding: 32px 24px 24px;
+        .content {
+            padding: 28px 24px 0;
             flex: 1;
         }
 
-        /* Header Section */
-        .header-section {
+        /* Header */
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 20px;
-            gap: 16px;
+            margin-bottom: 12px;
+            gap: 12px;
         }
 
-        .brand-logo {
-            font-size: 56px;
+        .logo {
+            font-size: 52px;
             font-weight: 900;
             font-style: italic;
             color: #1a1a2e;
             letter-spacing: -2px;
             line-height: 1;
-            flex-shrink: 0;
         }
 
-        .tag-badge {
+        .badge {
             background: linear-gradient(135deg, #51f7d5 0%, #2dd4bf 100%);
             color: #000;
-            padding: 12px 16px;
-            border-radius: 16px;
+            padding: 10px 14px;
+            border-radius: 14px;
             font-weight: 700;
-            font-size: 14px;
-            line-height: 1.4;
+            font-size: 13px;
+            line-height: 1.3;
             text-align: center;
-            box-shadow: 0 8px 20px rgba(81, 247, 213, 0.25);
+            box-shadow: 0 6px 16px rgba(81, 247, 213, 0.3);
             flex-shrink: 0;
-            letter-spacing: 0.5px;
         }
 
         /* Main Title */
-        .main-title {
-            font-size: 52px;
+        .title {
+            font-size: 48px;
             font-weight: 900;
             font-style: italic;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             letter-spacing: -1px;
             line-height: 1.1;
             background: linear-gradient(to bottom, #d4a574 0%, #a68c3f 50%, #8b6f47 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
-        /* Features Grid */
-        .features-grid {
+        /* Features */
+        .features {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 24px;
+            gap: 8px;
+            margin-bottom: 20px;
         }
 
-        .feature-item {
-            background: linear-gradient(135deg, #000 0%, #1a1a2e 100%);
+        .feature {
+            background: #000;
             color: #51f7d5;
-            padding: 10px 14px;
-            border-radius: 18px;
-            font-size: 13px;
+            padding: 8px 12px;
+            border-radius: 16px;
+            font-size: 12px;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(81, 247, 213, 0.1);
-        }
-
-        .feature-item:active {
-            transform: scale(0.98);
+            gap: 6px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(81, 247, 213, 0.15);
         }
 
         .feature-icon {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .feature-icon svg {
@@ -139,185 +128,261 @@
             fill: #51f7d5;
         }
 
-        /* QR Code Section */
+        /* QR Section */
         .qr-section {
+            position: relative;
+            margin: 0 -24px -28px -24px;
             padding: 24px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(240, 250, 255, 0.9) 100%);
-            border-radius: 0 0 32px 32px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: linear-gradient(180deg, #b3d9ff 0%, #8fc5ff 100%);
+            border-radius: 28px 28px 0 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            gap: 20px;
+            min-height: 400px;
+            justify-content: center;
         }
 
-        .qr-wrapper {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1;
-            max-width: 300px;
-            border-radius: 24px;
+        /* Decorative elements */
+        .qr-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
             overflow: hidden;
-            box-shadow: 0 16px 40px rgba(0, 110, 255, 0.15), 0 8px 16px rgba(0, 0, 0, 0.08);
-            border: 3px solid #fff;
-            background: #fff;
+            border-radius: 28px 28px 0 0;
+        }
+
+        .star {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 20px;
+        }
+
+        .star-1 { top: 40px; left: 60px; }
+        .star-2 { top: 80px; right: 40px; }
+        .star-3 { bottom: 120px; left: 30px; }
+        .star-4 { bottom: 80px; right: 50px; }
+
+        .dot {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+        }
+
+        .dot-1 { width: 8px; height: 8px; top: 60px; right: 80px; }
+        .dot-2 { width: 6px; height: 6px; bottom: 100px; right: 60px; }
+        .dot-3 { width: 7px; height: 7px; bottom: 150px; left: 50px; }
+
+        .hand-left, .hand-right {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .hand-left {
+            left: -40px;
+            background: linear-gradient(135deg, #ffb3d9 0%, #ff99cc 100%);
+            border-radius: 50% 30% 40% 60%;
+            transform: rotate(-20deg);
+        }
+
+        .hand-right {
+            right: -40px;
+            background: linear-gradient(135deg, #ffb3d9 0%, #ff99cc 100%);
+            border-radius: 30% 50% 60% 40%;
+            transform: rotate(20deg);
+        }
+
+        /* QR Code Container */
+        .qr-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 280px;
+            aspect-ratio: 1;
+            background: white;
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: 0 12px 32px rgba(0, 110, 255, 0.2);
+            border: 3px solid white;
         }
 
         .qr-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 16px;
             display: block;
         }
 
-        /* Guide Text */
-        .guide-text {
+        /* Arrow */
+        .arrow {
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            z-index: 20;
+        }
+
+        .arrow svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        /* Footer */
+        .footer {
+            padding: 24px;
+            background: linear-gradient(180deg, rgba(208, 232, 255, 0.8) 0%, rgba(200, 224, 255, 0.6) 100%);
+            text-align: center;
+            border-top: 2px solid rgba(0, 110, 255, 0.2);
+        }
+
+        .footer-text {
             font-size: 14px;
             font-weight: 600;
             color: #0066ff;
-            text-align: center;
+            letter-spacing: 0.5px;
             line-height: 1.6;
-            letter-spacing: 0.3px;
+            position: relative;
+            padding: 0 16px;
         }
 
-        /* 装饰元素 */
-        .decoration {
+        .footer-text::before,
+        .footer-text::after {
+            content: '';
             position: absolute;
-            pointer-events: none;
-            opacity: 0.8;
+            top: 50%;
+            width: 20px;
+            height: 1px;
+            background: #0066ff;
+            transform: translateY(-50%);
         }
 
-        .decoration-top {
-            top: -20px;
-            right: -20px;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(81, 247, 213, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
+        .footer-text::before {
+            left: 0;
         }
 
-        .decoration-bottom {
-            bottom: -30px;
-            left: -30px;
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle, rgba(0, 110, 255, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
+        .footer-text::after {
+            right: 0;
         }
 
         /* 移动端优化 */
         @media (max-width: 480px) {
             body {
-                padding: 8px;
+                padding: 12px;
             }
 
-            .content-wrapper {
-                padding: 24px 18px 20px;
+            .content {
+                padding: 24px 20px 0;
             }
 
-            .brand-logo {
-                font-size: 48px;
-            }
-
-            .tag-badge {
-                font-size: 12px;
-                padding: 10px 12px;
-            }
-
-            .main-title {
+            .logo {
                 font-size: 44px;
-                margin-bottom: 18px;
             }
 
-            .features-grid {
-                gap: 8px;
-                margin-bottom: 18px;
-            }
-
-            .feature-item {
+            .badge {
                 font-size: 12px;
-                padding: 8px 12px;
-                border-radius: 16px;
+                padding: 9px 12px;
+            }
+
+            .title {
+                font-size: 40px;
+                margin-bottom: 14px;
+            }
+
+            .features {
+                gap: 7px;
+                margin-bottom: 16px;
+            }
+
+            .feature {
+                font-size: 11px;
+                padding: 7px 10px;
             }
 
             .qr-section {
-                padding: 18px;
-                gap: 14px;
+                padding: 20px;
+                gap: 16px;
+                min-height: 360px;
             }
 
-            .qr-wrapper {
-                max-width: 260px;
-                border-width: 2px;
+            .qr-container {
+                max-width: 240px;
             }
 
-            .guide-text {
+            .footer {
+                padding: 20px;
+            }
+
+            .footer-text {
                 font-size: 13px;
             }
         }
 
         @media (max-width: 360px) {
-            .brand-logo {
-                font-size: 40px;
-            }
-
-            .main-title {
+            .logo {
                 font-size: 36px;
             }
 
-            .feature-item {
-                font-size: 11px;
-                padding: 7px 10px;
+            .title {
+                font-size: 32px;
             }
 
-            .qr-wrapper {
-                max-width: 240px;
+            .feature {
+                font-size: 10px;
+                padding: 6px 9px;
             }
 
-            .guide-text {
+            .qr-container {
+                max-width: 220px;
+            }
+
+            .footer-text {
                 font-size: 12px;
             }
         }
 
-        /* 高分屏优化 */
-        @media (min-width: 1024px) {
-            .poster-container {
-                box-shadow: 0 30px 80px rgba(0, 110, 255, 0.15), 0 12px 32px rgba(0, 0, 0, 0.1);
-            }
-        }
-
-        /* 深色模式支持 */
+        /* 深色模式 */
         @media (prefers-color-scheme: dark) {
             body {
-                background: linear-gradient(135deg, #0a1428 0%, #1a2a4a 50%, #0f1f3a 100%);
+                background: linear-gradient(180deg, #0a1428 0%, #1a2a4a 50%, #0f1f3a 100%);
             }
 
-            .poster-container {
-                background: linear-gradient(180deg, #1a2a3a 0%, #0f1f2a 100%);
+            .container {
+                background: #1a2a3a;
+                box-shadow: 0 16px 48px rgba(0, 110, 255, 0.2);
             }
 
-            .brand-logo {
+            .logo {
                 color: #e8f4ff;
             }
 
-            .main-title {
+            .title {
                 background: linear-gradient(to bottom, #d4a574 0%, #a68c3f 50%, #8b6f47 100%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
             }
 
-            .guide-text {
+            .footer {
+                background: linear-gradient(180deg, rgba(26, 42, 58, 0.8) 0%, rgba(15, 31, 42, 0.6) 100%);
+                border-top-color: rgba(81, 247, 213, 0.2);
+            }
+
+            .footer-text {
                 color: #51d4ff;
             }
 
-            .qr-section {
-                background: linear-gradient(180deg, rgba(26, 42, 58, 0.7) 0%, rgba(15, 31, 42, 0.9) 100%);
-            }
-
-            .qr-wrapper {
-                border-color: rgba(255, 255, 255, 0.1);
-                background: #0a1428;
+            .footer-text::before,
+            .footer-text::after {
+                background: #51d4ff;
             }
         }
 
@@ -333,53 +398,50 @@
             }
         }
 
-        .poster-container {
+        .container {
             animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* 允许长按 */
-        .qr-wrapper {
+        .qr-image {
             -webkit-user-select: auto;
             user-select: auto;
         }
     </style>
 </head>
 <body>
-    <div class="poster-container">
-        <div class="decoration decoration-top"></div>
-        <div class="decoration decoration-bottom"></div>
-
-        <div class="content-wrapper">
+    <div class="container">
+        <div class="content">
             <!-- Header -->
-            <div class="header-section">
-                <div class="brand-logo">@30G</div>
-                <div class="tag-badge">名师精品<br>授课视频</div>
+            <div class="header">
+                <div class="logo">@30G</div>
+                <div class="badge">名师精品<br>授课视频</div>
             </div>
 
-            <!-- Main Title -->
-            <h1 class="main-title">进群免费领</h1>
+            <!-- Title -->
+            <h1 class="title">进群免费领</h1>
 
-            <!-- Features Grid -->
-            <div class="features-grid">
-                <div class="feature-item">
+            <!-- Features -->
+            <div class="features">
+                <div class="feature">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                     </div>
                     房屋布局风水
                 </div>
-                <div class="feature-item">
+                <div class="feature">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                     </div>
                     公司店铺选址
                 </div>
-                <div class="feature-item">
+                <div class="feature">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                     </div>
                     看相识人秘术
                 </div>
-                <div class="feature-item">
+                <div class="feature">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                     </div>
@@ -388,14 +450,35 @@
             </div>
         </div>
 
-        <!-- QR Code Section -->
+        <!-- QR Section -->
         <div class="qr-section">
-            <div class="qr-wrapper">
+            <div class="qr-bg">
+                <div class="star star-1">✦</div>
+                <div class="star star-2">✦</div>
+                <div class="star star-3">✦</div>
+                <div class="star star-4">✦</div>
+                <div class="dot dot-1"></div>
+                <div class="dot dot-2"></div>
+                <div class="dot dot-3"></div>
+                <div class="hand-left"></div>
+                <div class="hand-right"></div>
+            </div>
+
+            <div class="arrow">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M80 20C70 40 40 50 30 75" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M20 65L30 75L40 65" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <div class="qr-container">
                 <img src="poster.webp" alt="微信群二维码" class="qr-image">
             </div>
-            <div class="guide-text">
-                📱 提示保留到微信<br>长按识别入群
-            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">截图保留到微信，长按识别入群！</p>
         </div>
     </div>
 </body>
