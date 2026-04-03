@@ -61,6 +61,24 @@
             background: #fff;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,110,255,0.1);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .qr-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0,110,255,0.15);
+        }
+
+        .qr-section:active {
+            transform: translateY(0);
+        }
+
+        .qr-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
         }
 
         .floating-elements {
@@ -77,16 +95,101 @@
             color: #4A90E2;
         }
 
-        /* 模拟原图中的装饰元素 */
-        .circle-bg {
+        /* 全屏放大弹窗 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .modal-close {
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(0,110,255,0.1) 0%, transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 0;
+            top: -40px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .modal-hint {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            animation: fadeIn 0.5s ease 0.2s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 640px) {
+            .modal-close {
+                top: 10px;
+                right: 10px;
+            }
+
+            .modal-hint {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -124,30 +227,79 @@
             </div>
         </div>
 
-        <!-- QR Code Container -->
-        <div class="relative w-full aspect-square max-w-[340px] mb-8 group">
-            <!-- 模拟海报背景 -->
-            <div class="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-                <img src="poster.webp" alt="Poster Background" class="w-full h-full object-cover">
-                <!-- 遮罩层，如果需要直接展示原图中的二维码区域，可以调整样式 -->
-                <!-- 这里为了还原效果，我们直接显示原图，但在上面覆盖一层说明 -->
-            </div>
-            
-            <!-- 箭头装饰 (SVG) -->
-            <div class="absolute -top-12 -right-4 w-20 h-20 animate-bounce">
-                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M80 20C70 40 40 50 30 75" stroke="white" stroke-width="4" stroke-linecap="round"/>
-                    <path d="M20 65L30 75L40 65" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+        <!-- QR Code Container - Clickable -->
+        <div class="relative w-full aspect-square max-w-[340px] mb-8 group" id="qrContainer">
+            <div class="qr-section">
+                <img src="poster.webp" alt="点击放大二维码" class="qr-image" id="qrImage">
+                <!-- 提示文字 -->
+                <div class="absolute bottom-4 left-4 right-4 text-center">
+                    <p class="text-xs md:text-sm text-gray-600 bg-white bg-opacity-80 px-2 py-1 rounded">
+                        👆 点击放大识别
+                    </p>
+                </div>
             </div>
         </div>
 
         <!-- Footer -->
         <div class="w-full border-t border-blue-200 pt-6 mt-4">
             <p class="text-blue-600 font-bold text-lg md:text-xl tracking-wider">
-                截图保留到微信，长按识别入群！
+                长按识别入群！
             </p>
         </div>
     </div>
+
+    <!-- 全屏放大弹窗 -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <img src="poster.webp" alt="二维码大图" class="modal-image" id="modalImage">
+            <div class="modal-hint">
+                📱 长按图片保存或截图，在微信中识别二维码加入群组
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const qrContainer = document.getElementById('qrContainer');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalClose = document.getElementById('modalClose');
+        const qrImage = document.getElementById('qrImage');
+
+        // 点击二维码打开放大弹窗
+        qrContainer.addEventListener('click', function(e) {
+            // 防止冒泡
+            if (e.target.closest('.modal-close')) return;
+            modalOverlay.classList.add('active');
+            // 禁止背景滚动
+            document.body.style.overflow = 'hidden';
+        });
+
+        // 关闭弹窗
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        modalClose.addEventListener('click', closeModal);
+
+        // 点击背景关闭弹窗
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // 按 ESC 键关闭弹窗
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // 移动端优化：防止图片被长按时触发系统菜单
+        qrImage.addEventListener('contextmenu', function(e) {
+            // 允许长按，不阻止默认行为
+        });
+    </script>
 </body>
 </html>
